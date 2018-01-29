@@ -112,4 +112,19 @@ public class CarServiceTest {
     }
 
 
+    @Test
+    public void vehiclePriceOrder() {
+        List <VehicleList> vehicle = carService.vehiclePriceOrder();
+        System.out.println(vehicle);
+        Assert.assertNotNull(vehicle);
+        Assert.assertEquals(this.vehicleLists.size(), vehicle.size());
+        Double price = Double.valueOf(vehicle.get(0).getPrice());
+        for (VehicleList v : vehicle) {
+            if (v.getPrice() < price) {
+                Assert.assertTrue(false);
+            } else {
+                price = v.getPrice();
+            }
+        }
+    }
 }
