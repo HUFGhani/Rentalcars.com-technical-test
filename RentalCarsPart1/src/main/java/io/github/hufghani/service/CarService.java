@@ -8,6 +8,8 @@ import io.github.hufghani.model.VehicleList;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class CarService implements CarServiceInterface {
@@ -40,7 +42,12 @@ public class CarService implements CarServiceInterface {
     }
 
     public List<VehicleList> vehiclePriceOrder() {
-        return null;
+        Collections.sort(getAllVehicles(), new Comparator<VehicleList>() {
+            public int compare(VehicleList vehicle1, VehicleList vehicle) {
+                return Double.compare(vehicle1.getPrice(),vehicle.getPrice());
+            }
+        });
+        return getAllVehicles();
     }
 
 
