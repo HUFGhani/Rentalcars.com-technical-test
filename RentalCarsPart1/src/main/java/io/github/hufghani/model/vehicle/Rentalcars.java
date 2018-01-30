@@ -1,5 +1,5 @@
 
-package io.github.hufghani.model;
+package io.github.hufghani.model.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

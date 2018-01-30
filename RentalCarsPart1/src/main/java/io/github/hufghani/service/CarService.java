@@ -3,11 +3,14 @@ package io.github.hufghani.service;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.hufghani.model.Rentalcars;
-import io.github.hufghani.model.VehicleList;
+import io.github.hufghani.model.specification.VehicleSIPPSpecification;
+import io.github.hufghani.model.specification.VehicleSpecification;
+import io.github.hufghani.model.vehicle.Rentalcars;
+import io.github.hufghani.model.vehicle.VehicleList;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -15,19 +18,28 @@ import java.util.List;
 public class CarService implements CarServiceInterface {
 
     private Rentalcars rentalcars;
+    private VehicleSIPPSpecification vehicleSIPPSpecification;
     private List<VehicleList> vehicleLists;
 
     public CarService() {
         loadJsonData();
-
     }
 
     private void loadJsonData() {
         try {
-            InputStream resourceAsStream = CarService.class.getClassLoader().getResourceAsStream("vehicles.json");
+            InputStream vehicleResourceAsStream = CarService.class.getClassLoader()
+                    .getResourceAsStream("vehicles.json");
             ObjectMapper objectMapper = new ObjectMapper();
-            this.rentalcars = objectMapper.readValue(resourceAsStream,Rentalcars.class);
+
+            InputStream vehicleSpecificationResourceAsStream = CarService.class.getClassLoader()
+                    .getResourceAsStream("sipp_spec.json");
+
+
+            this.rentalcars = objectMapper.readValue(vehicleResourceAsStream,Rentalcars.class);
             this.vehicleLists = this.rentalcars.getSearch().getVehicleList();
+            this.vehicleSIPPSpecification = objectMapper.
+                    readValue(vehicleSpecificationResourceAsStream,VehicleSIPPSpecification.class);
+
         } catch (JsonParseException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -50,5 +62,28 @@ public class CarService implements CarServiceInterface {
         return getAllVehicles();
     }
 
+    public List<VehicleSpecification> vehicleSpecification() {
+        List<VehicleList> vehicleLists = this.getAllVehicles();
+        List<VehicleSpecification> temp = new ArrayList<VehicleSpecification>();
+        vehicleLists.forEach(
+                vehicle->{
+                    char[] sipp = vehicle.getSipp().toCharArray();
+                    VehicleSpecification vehicleSpecification = new VehicleSpecification();
+                    vehicleSpecification.setVehicleList(vehicle);
+                    vehicleSpecification.setCarType(this.vehicleSIPPSpecification.getCarTypeMap().get(sipp[0]));
+                    vehicleSpecification.setDoors(this.vehicleSIPPSpecification.getDoorsMap().get(sipp[1]));
+                    vehicleSpecification.setTransmission(this.vehicleSIPPSpecification.getTransmissionMap().get(sipp[2]));
+                    String [] fuelAc = this.vehicleSIPPSpecification.getFuelAcMap().get(sipp[3]).split("/");
+                    vehicleSpecification.setFuel(fuelAc[0]);
+                    vehicleSpecification.setAc(fuelAc[1]);
+                    temp.add(vehicleSpecification);
+                });
+        return Collections.unmodifiableList(temp);
+    }
 
+
+
+    public static void main(String[] args){
+        CarService carService = new CarService();
+    }
 }
