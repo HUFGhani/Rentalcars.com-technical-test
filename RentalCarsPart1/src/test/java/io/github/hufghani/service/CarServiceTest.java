@@ -1,6 +1,7 @@
 package io.github.hufghani.service;
 
-import io.github.hufghani.model.VehicleList;
+import io.github.hufghani.model.specification.VehicleSpecification;
+import io.github.hufghani.model.vehicle.VehicleList;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -115,7 +116,6 @@ public class CarServiceTest {
     @Test
     public void vehiclePriceOrder() {
         List <VehicleList> vehicle = carService.vehiclePriceOrder();
-        System.out.println(vehicle);
         Assert.assertNotNull(vehicle);
         Assert.assertEquals(this.vehicleLists.size(), vehicle.size());
         Double price = Double.valueOf(vehicle.get(0).getPrice());
@@ -127,4 +127,55 @@ public class CarServiceTest {
             }
         }
     }
+
+
+    @Test
+    public void vehicleSpecification() {
+        List<VehicleSpecification> vehicleSpecifications = this.carService.vehicleSpecification();
+        Assert.assertNotNull(vehicleSpecifications);
+        Assert.assertEquals(this.vehicleLists.size(), vehicleSpecifications.size());
+        VehicleSpecification vehicleSpecification = vehicleSpecifications.get(0);
+        Assert.assertEquals("Mini", vehicleSpecification.getCarType());
+        Assert.assertEquals("2 doors", vehicleSpecification.getDoors());
+        Assert.assertEquals("Manual", vehicleSpecification.getTransmission());
+        Assert.assertEquals("Petrol", vehicleSpecification.getFuel());
+        Assert.assertEquals("no AC", vehicleSpecification.getAc());
+
+        vehicleSpecification = vehicleSpecifications.get(1);
+        Assert.assertEquals("Economy", vehicleSpecification.getCarType());
+        Assert.assertEquals("4 doors", vehicleSpecification.getDoors());
+        Assert.assertEquals("Automatic", vehicleSpecification.getTransmission());
+        Assert.assertEquals("Petrol", vehicleSpecification.getFuel());
+        Assert.assertEquals("AC", vehicleSpecification.getAc());
+
+        vehicleSpecification = vehicleSpecifications.get(2);
+        Assert.assertEquals("Compact", vehicleSpecification.getCarType());
+        Assert.assertEquals("5 doors", vehicleSpecification.getDoors());
+
+        vehicleSpecification = vehicleSpecifications.get(3);
+        Assert.assertEquals("Intermediate", vehicleSpecification.getCarType());
+        Assert.assertEquals("Estate", vehicleSpecification.getDoors());
+
+        vehicleSpecification = vehicleSpecifications.get(4);
+        Assert.assertEquals("Standard", vehicleSpecification.getCarType());
+        Assert.assertEquals("Convertible", vehicleSpecification.getDoors());
+
+        vehicleSpecification = vehicleSpecifications.get(5);
+        Assert.assertEquals("Full size", vehicleSpecification.getCarType());
+        Assert.assertEquals("SUV", vehicleSpecification.getDoors());
+
+        vehicleSpecification = vehicleSpecifications.get(6);
+        Assert.assertEquals("Premium", vehicleSpecification.getCarType());
+        Assert.assertEquals("Pick up", vehicleSpecification.getDoors());
+
+        vehicleSpecification = vehicleSpecifications.get(7);
+        Assert.assertEquals("Luxury", vehicleSpecification.getCarType());
+        Assert.assertEquals("Passenger Van", vehicleSpecification.getDoors());
+
+        vehicleSpecification = vehicleSpecifications.get(8);
+        Assert.assertEquals("Special", vehicleSpecification.getCarType());
+
+    }
+
+
 }
