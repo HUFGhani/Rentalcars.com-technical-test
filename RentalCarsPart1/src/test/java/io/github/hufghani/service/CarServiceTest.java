@@ -105,7 +105,7 @@ public class CarServiceTest {
         };
     }
     @Test
-    public void getAllVehicles() {
+    public void testGetAllVehicles() {
         List <VehicleList> vehicle = carService.getAllVehicles();
         Assert.assertNotNull(vehicle);
         Assert.assertTrue(vehicle.size() == 10);
@@ -114,7 +114,7 @@ public class CarServiceTest {
 
 
     @Test
-    public void vehiclePriceOrder() {
+    public void testVehiclePriceOrder() {
         List <VehicleList> vehicle = carService.vehiclePriceOrder();
         Assert.assertNotNull(vehicle);
         Assert.assertEquals(this.vehicleLists.size(), vehicle.size());
@@ -130,7 +130,7 @@ public class CarServiceTest {
 
 
     @Test
-    public void vehicleSpecification() {
+    public void testVehicleSpecification() {
         List<VehicleSpecification> vehicleSpecifications = this.carService.vehicleSpecification();
         Assert.assertNotNull(vehicleSpecifications);
         Assert.assertEquals(this.vehicleLists.size(), vehicleSpecifications.size());
@@ -177,5 +177,19 @@ public class CarServiceTest {
 
     }
 
-
+    @Test
+    public void testSupplierRatingPerCarType() {
+        List<VehicleSpecification> vehicleSpecifications = this.carService.supplierRatingPerCarType();
+        Assert.assertNotNull(vehicleSpecifications);
+        Assert.assertEquals(this.vehicleLists.size(), vehicleSpecifications.size());
+        for(VehicleSpecification vehicleSpecification: vehicleSpecifications){
+            VehicleList vehicleList = vehicleSpecification.getVehicleList();
+            if (vehicleList.equals("Vehicle 3")){
+                Assert.assertEquals(java.util.Optional.of(Double.valueOf(80.0)), vehicleList.getRating());
+                Assert.assertEquals(java.util.Optional.of(Double.valueOf(800.0)), vehicleList.getPrice());
+                Assert.assertEquals("Suplier3", vehicleList.getSupplier());
+                break;
+            }
+        }
+    }
 }
