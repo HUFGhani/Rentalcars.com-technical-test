@@ -181,7 +181,7 @@ public class CarServiceTest {
     public void testSupplierRatingPerCarType() {
         List<VehicleSpecification> vehicleSpecifications = this.carService.supplierRatingPerCarType();
         Assert.assertNotNull(vehicleSpecifications);
-        Assert.assertEquals(this.vehicleLists.size(), vehicleSpecifications.size());
+        Assert.assertEquals(this.vehicleLists.size() -1, vehicleSpecifications.size());
         for(VehicleSpecification vehicleSpecification: vehicleSpecifications){
             VehicleList vehicleList = vehicleSpecification.getVehicleList();
             if (vehicleList.equals("Vehicle 3")){
