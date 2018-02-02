@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarService implements CarServiceInterface {
 
@@ -72,7 +73,8 @@ public class CarService implements CarServiceInterface {
                     vehicleSpecification.setVehicleList(vehicle);
                     vehicleSpecification.setCarType(this.vehicleSIPPSpecification.getCarTypeMap().get(sipp[0]));
                     vehicleSpecification.setDoors(this.vehicleSIPPSpecification.getDoorsMap().get(sipp[1]));
-                    vehicleSpecification.setTransmission(this.vehicleSIPPSpecification.getTransmissionMap().get(sipp[2]));
+                    vehicleSpecification.setTransmission(this.vehicleSIPPSpecification
+                            .getTransmissionMap().get(sipp[2]));
                     String [] fuelAc = this.vehicleSIPPSpecification.getFuelAcMap().get(sipp[3]).split("/");
                     vehicleSpecification.setFuel(fuelAc[0]);
                     vehicleSpecification.setAc(fuelAc[1]);
@@ -81,9 +83,28 @@ public class CarService implements CarServiceInterface {
         return Collections.unmodifiableList(temp);
     }
 
+    @Override
+    public List<VehicleSpecification> supplierRatingPerCarType() {
+        List<VehicleList> vehicleLists = this.getAllVehicles();
+        List<VehicleSpecification> vehicleSpecifications = vehicleSpecification();
+        List<VehicleSpecification> temp = new ArrayList<VehicleSpecification>();
+        vehicleSpecifications.stream()
+                .collect(Collectors.groupingBy(VehicleSpecification::getCarType, Collectors.toList()))
+                .forEach(
+                        (vehicleType,vehicleSpec) ->{
+                            VehicleSpecification vehicleSpecification = vehicleSpec.stream()
+                                    .max((vehicleSpec1, vehicleSpec2) -> Double.compare(vehicleSpec1.getVehicleList().getRating(),vehicleSpec2.getVehicleList().getRating()))
+                                    .get();
+                            temp.add(vehicleSpecification);
+                        }
+                );
 
-
-    public static void main(String[] args){
-        CarService carService = new CarService();
+        return Collections.unmodifiableList(
+                temp.stream()
+                .sorted((vehicleSpec1,vehicleSpec2) -> vehicleSpec1.getCarType().compareTo(vehicleSpec2.getCarType()))
+                .collect(Collectors.toList())
+        );
     }
+
+
 }

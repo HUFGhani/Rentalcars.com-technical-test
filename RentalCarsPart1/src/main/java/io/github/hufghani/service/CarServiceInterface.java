@@ -12,4 +12,6 @@ public interface CarServiceInterface {
     public List<VehicleList>vehiclePriceOrder();
 
     public List<VehicleSpecification> vehicleSpecification();
+
+    public List<VehicleSpecification> supplierRatingPerCarType();
 }
