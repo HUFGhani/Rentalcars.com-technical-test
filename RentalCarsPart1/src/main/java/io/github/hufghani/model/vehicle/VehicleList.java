@@ -23,11 +23,12 @@ public class VehicleList implements Serializable
     @JsonProperty("name")
     private String name;
     @JsonProperty("price")
-    private double price;
+    private Double price;
     @JsonProperty("supplier")
     private String supplier;
     @JsonProperty("rating")
-    private double rating;
+    private Double rating;
+    private Double score;
     private final static long serialVersionUID = -4507223516141218126L;
 
     /**
@@ -75,12 +76,12 @@ public class VehicleList implements Serializable
     }
 
     @JsonProperty("price")
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     @JsonProperty("price")
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -95,13 +96,22 @@ public class VehicleList implements Serializable
     }
 
     @JsonProperty("rating")
-    public double getRating() {
+    public Double getRating() {
         return rating;
     }
 
     @JsonProperty("rating")
-    public void setRating(double rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public VehicleList setScore(Double score) {
+        this.score = score;
+        return this;
     }
 
     @Override
@@ -112,6 +122,7 @@ public class VehicleList implements Serializable
                 ", price=" + price +
                 ", supplier='" + supplier + '\'' +
                 ", rating=" + rating +
+                ", score=" + score +
                 '}';
     }
 }

@@ -87,7 +87,7 @@ public class CarService implements CarServiceInterface {
     public List<VehicleSpecification> supplierRatingPerCarType() {
         List<VehicleList> vehicleLists = this.getAllVehicles();
         List<VehicleSpecification> vehicleSpecifications = vehicleSpecification();
-        List<VehicleSpecification> temp = new ArrayList<VehicleSpecification>();
+        List<VehicleSpecification> temp = new ArrayList<VehicleSpecification>(vehicleLists.size());
         vehicleSpecifications.stream()
                 .collect(Collectors.groupingBy(VehicleSpecification::getCarType, Collectors.toList()))
                 .forEach(
@@ -103,6 +103,31 @@ public class CarService implements CarServiceInterface {
                 temp.stream()
                 .sorted((vehicleSpec1,vehicleSpec2) -> vehicleSpec1.getCarType().compareTo(vehicleSpec2.getCarType()))
                 .collect(Collectors.toList())
+        );
+    }
+
+    @Override
+    public List<VehicleList> calculateCombineScore() {
+        List<VehicleList> vehicleLists = this.getAllVehicles();
+        for (int i = 0; i < vehicleLists.size(); i++) {
+            int vehicleScore = 0;
+            char[] vehicleSipp = vehicleLists.get(i).getSipp().toCharArray();
+            if(vehicleSipp[2] == 'M'){
+                vehicleScore += 1;
+            } else if (vehicleSipp[2] == 'A') {
+                vehicleScore += 5;
+            }
+
+            if (vehicleSipp[3] == 'R') {
+                vehicleScore += 2;
+            }
+
+            vehicleLists.get(i).setScore(vehicleScore + vehicleLists.get(i).getRating());
+        }
+        return Collections.unmodifiableList(
+                vehicleLists.stream()
+                        .sorted((vehicle1,vehicle2) -> Double.compare(vehicle1.getScore(),vehicle2.getScore()))
+                        .collect(Collectors.toList())
         );
     }
 

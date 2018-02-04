@@ -14,4 +14,6 @@ public interface CarServiceInterface {
     public List<VehicleSpecification> vehicleSpecification();
 
     public List<VehicleSpecification> supplierRatingPerCarType();
+
+    public List<VehicleList> calculateCombineScore();
 }
