@@ -16,76 +16,76 @@ public class CarServiceTest {
 
     @Before
     public void setUp() {
-        vehicleLists = new ArrayList<VehicleList>();
+        vehicleLists = new ArrayList<>();
         VehicleList vehicle1 = new VehicleList();
         vehicle1.setName("Vehicle 1");
-        vehicle1.setPrice(Double.valueOf(100.0));
-        vehicle1.setRating(Double.valueOf(10.0));
+        vehicle1.setPrice(100.0);
+        vehicle1.setRating(10.0);
         vehicle1.setSipp("MBMN");
-        vehicle1.setSupplier("Suplier 1");
+        vehicle1.setSupplier("Supplier 1");
 
         VehicleList vehicle2 = new VehicleList();
         vehicle2.setName("Vehicle 2");
-        vehicle2.setPrice(Double.valueOf(90.0));
-        vehicle2.setRating(Double.valueOf(9.0));
+        vehicle2.setPrice(90.0);
+        vehicle2.setRating(9.0);
         vehicle2.setSipp("ECAR");
-        vehicle2.setSupplier("Suplier 1");
+        vehicle2.setSupplier("Supplier 1");
 
         VehicleList vehicle3 = new VehicleList();
         vehicle3.setName("Vehicle 3");
-        vehicle3.setPrice(Double.valueOf(80.0));
-        vehicle3.setRating(Double.valueOf(8.0));
+        vehicle3.setPrice(80.0);
+        vehicle3.setRating(8.0);
         vehicle3.setSipp("CDMN");
-        vehicle3.setSupplier("Suplier 1");
+        vehicle3.setSupplier("Supplier 1");
 
         VehicleList vehicle4 = new VehicleList();
         vehicle4.setName("Vehicle 4");
-        vehicle4.setPrice(Double.valueOf(110.0));
-        vehicle4.setRating(Double.valueOf(11.0));
+        vehicle4.setPrice(110.0);
+        vehicle4.setRating(11.0);
         vehicle4.setSipp("IWAR");
-        vehicle4.setSupplier("Suplier 1");
+        vehicle4.setSupplier("Supplier 1");
 
         VehicleList vehicle5 = new VehicleList();
         vehicle5.setName("Vehicle 5");
-        vehicle5.setPrice(Double.valueOf(70.0));
-        vehicle5.setRating(Double.valueOf(7.0));
+        vehicle5.setPrice(70.0);
+        vehicle5.setRating(7.0);
         vehicle5.setSipp("STMN");
-        vehicle5.setSupplier("Suplier 2");
+        vehicle5.setSupplier("Supplier 2");
 
         VehicleList vehicle6 = new VehicleList();
         vehicle6.setName("Vehicle 6");
-        vehicle6.setPrice(Double.valueOf(60.0));
-        vehicle6.setRating(Double.valueOf(6.0));
+        vehicle6.setPrice(60.0);
+        vehicle6.setRating(6.0);
         vehicle6.setSipp("FFAR");
-        vehicle6.setSupplier("Suplier 2");
+        vehicle6.setSupplier("Supplier 2");
 
         VehicleList vehicle7 = new VehicleList();
         vehicle7.setName("Vehicle 7");
-        vehicle7.setPrice(Double.valueOf(90.0));
-        vehicle7.setRating(Double.valueOf(9.0));
+        vehicle7.setPrice(90.0);
+        vehicle7.setRating(9.0);
         vehicle7.setSipp("PPMN");
-        vehicle7.setSupplier("Suplier 2");
+        vehicle7.setSupplier("Supplier 2");
 
         VehicleList vehicle8 = new VehicleList();
         vehicle8.setName("Vehicle 8");
-        vehicle8.setPrice(Double.valueOf(80.0));
-        vehicle8.setRating(Double.valueOf(8.0));
+        vehicle8.setPrice(80.0);
+        vehicle8.setRating(8.0);
         vehicle8.setSipp("LVAR");
-        vehicle8.setSupplier("Suplier 3");
+        vehicle8.setSupplier("Supplier 3");
 
         VehicleList vehicle9 = new VehicleList();
         vehicle9.setName("Vehicle 9");
-        vehicle9.setPrice(Double.valueOf(90.0));
-        vehicle9.setRating(Double.valueOf(9.0));
+        vehicle9.setPrice(90.0);
+        vehicle9.setRating(9.0);
         vehicle9.setSipp("XBMN");
-        vehicle9.setSupplier("Suplier 3");
+        vehicle9.setSupplier("Supplier 3");
 
         VehicleList vehicle10 = new VehicleList();
         vehicle10.setName("Vehicle 10");
-        vehicle10.setPrice(Double.valueOf(800.0));
-        vehicle10.setRating(Double.valueOf(80.0));
+        vehicle10.setPrice(800.0);
+        vehicle10.setRating(80.0);
         vehicle10.setSipp("CDMN");
-        vehicle10.setSupplier("Suplier 3");
+        vehicle10.setSupplier("Supplier 3");
 
         vehicleLists.add(vehicle1);
         vehicleLists.add(vehicle2);
@@ -117,7 +117,7 @@ public class CarServiceTest {
         List <VehicleList> vehicle = carService.vehiclePriceOrder();
         Assert.assertNotNull(vehicle);
         Assert.assertEquals(this.vehicleLists.size(), vehicle.size());
-        Double price = Double.valueOf(vehicle.get(0).getPrice());
+        Double price = vehicle.get(0).getPrice();
         for (VehicleList v : vehicle) {
             if (v.getPrice() < price) {
                 Assert.assertTrue(false);
@@ -183,10 +183,10 @@ public class CarServiceTest {
         Assert.assertEquals(this.vehicleLists.size() -1, vehicleSpecifications.size());
         for(VehicleSpecification vehicleSpecification: vehicleSpecifications){
             VehicleList vehicleList = vehicleSpecification.getVehicleList();
-            if (vehicleList.equals("Vehicle 3")){
+            if (vehicleList.getName().equals("Vehicle 3")){
                 Assert.assertEquals(Double.valueOf(80.0), vehicleList.getRating());
                 Assert.assertEquals(Double.valueOf(800.0), vehicleList.getPrice());
-                Assert.assertEquals("Suplier3", vehicleList.getSupplier());
+                Assert.assertEquals("Supplier 3", vehicleList.getSupplier());
                 break;
             }
         }
