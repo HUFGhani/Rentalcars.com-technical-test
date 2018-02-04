@@ -9,9 +9,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarServiceTest {
+public class VehicleServiceTest {
 
-    private CarService carService;
+    private VehicleService vehicleService;
     private List<VehicleList> vehicleLists;
 
     @Before
@@ -98,7 +98,7 @@ public class CarServiceTest {
         vehicleLists.add(vehicle9);
         vehicleLists.add(vehicle10);
 
-        this.carService = new CarService() {
+        this.vehicleService = new VehicleService() {
             public List<VehicleList> getAllVehicles() {
                 return vehicleLists;
             }
@@ -106,7 +106,7 @@ public class CarServiceTest {
     }
     @Test
     public void testGetAllVehicles() {
-        List <VehicleList> vehicle = carService.getAllVehicles();
+        List <VehicleList> vehicle = vehicleService.getAllVehicles();
         Assert.assertNotNull(vehicle);
         Assert.assertTrue(vehicle.size() == 10);
     }
@@ -114,7 +114,7 @@ public class CarServiceTest {
 
     @Test
     public void testVehiclePriceOrder() {
-        List <VehicleList> vehicle = carService.vehiclePriceOrder();
+        List <VehicleList> vehicle = vehicleService.vehiclePriceOrder();
         Assert.assertNotNull(vehicle);
         Assert.assertEquals(this.vehicleLists.size(), vehicle.size());
         Double price = vehicle.get(0).getPrice();
@@ -130,7 +130,7 @@ public class CarServiceTest {
 
     @Test
     public void testVehicleSpecification() {
-        List<VehicleSpecification> vehicleSpecifications = this.carService.vehicleSpecification();
+        List<VehicleSpecification> vehicleSpecifications = this.vehicleService.vehicleSpecification();
         Assert.assertNotNull(vehicleSpecifications);
         Assert.assertEquals(this.vehicleLists.size(), vehicleSpecifications.size());
         VehicleSpecification vehicleSpecification = vehicleSpecifications.get(0);
@@ -178,7 +178,7 @@ public class CarServiceTest {
 
     @Test
     public void testSupplierRatingPerCarType() {
-        List<VehicleSpecification> vehicleSpecifications = this.carService.supplierRatingPerCarType();
+        List<VehicleSpecification> vehicleSpecifications = this.vehicleService.supplierRatingPerCarType();
         Assert.assertNotNull(vehicleSpecifications);
         Assert.assertEquals(this.vehicleLists.size() -1, vehicleSpecifications.size());
         for(VehicleSpecification vehicleSpecification: vehicleSpecifications){
@@ -194,7 +194,7 @@ public class CarServiceTest {
 
     @Test
     public void testCalculateCombineScore() {
-        List<VehicleList> vehicles = this.carService.calculateCombineScore();
+        List<VehicleList> vehicles = this.vehicleService.calculateCombineScore();
         Assert.assertNotNull(vehicles);
         Assert.assertEquals(vehicleLists.size(),vehicles.size());
         Double combinedScore = vehicles.get(0).getCombinedScore();

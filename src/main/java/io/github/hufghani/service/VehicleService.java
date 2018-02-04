@@ -16,23 +16,23 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarService implements CarServiceInterface {
+public class VehicleService implements VehicleServiceInterface {
 
     private Rentalcars rentalcars;
     private VehicleSIPPSpecification vehicleSIPPSpecification;
     private List<VehicleList> vehicleLists;
 
-    public CarService() {
+    public VehicleService() {
         loadJsonData();
     }
 
     private void loadJsonData() {
         try {
-            InputStream vehicleResourceAsStream = CarService.class.getClassLoader()
+            InputStream vehicleResourceAsStream = VehicleService.class.getClassLoader()
                     .getResourceAsStream("vehicles.json");
             ObjectMapper objectMapper = new ObjectMapper();
 
-            InputStream vehicleSpecificationResourceAsStream = CarService.class.getClassLoader()
+            InputStream vehicleSpecificationResourceAsStream = VehicleService.class.getClassLoader()
                     .getResourceAsStream("sipp_spec.json");
 
 

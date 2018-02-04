@@ -5,7 +5,7 @@ import io.github.hufghani.model.vehicle.VehicleList;
 
 import java.util.List;
 
-public interface CarServiceInterface {
+public interface VehicleServiceInterface {
 
     public List<VehicleList>getAllVehicles();
 
