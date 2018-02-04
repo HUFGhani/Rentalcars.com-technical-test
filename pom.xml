@@ -8,7 +8,7 @@
 
   <packaging>jar</packaging>
 
-  <name>RentalCarsPart1</name>
+  <name>Rentalcars.com-technical-test</name>
   <url>http://maven.apache.org</url>
 
   <properties>
