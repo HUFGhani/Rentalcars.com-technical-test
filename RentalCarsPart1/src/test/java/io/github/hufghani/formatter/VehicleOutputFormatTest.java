@@ -36,12 +36,12 @@ public class VehicleOutputFormatTest {
         vehicle2.setName("Vehicle 2");
         vehicle2.setPrice(600.0);
         vehicle2.setRating(10.0);
-        vehicle2.setSipp("MBMN");
+        vehicle2.setSipp("MBMR");
         vehicle2.setSupplier("Supplier 1");
         vehicle2.setScore(11.0);
         VehicleSpecification vehicleSpecification2 = new VehicleSpecification();
-        vehicleSpecification2.setAc("no AC");
-        vehicleSpecification2.setVehicleList(vehicle1);
+        vehicleSpecification2.setAc("AC");
+        vehicleSpecification2.setVehicleList(vehicle2);
         vehicleSpecification2.setCarType("Mini");
         vehicleSpecification2.setDoors("2 doors");
         vehicleSpecification2.setFuel("Petrol");
@@ -62,12 +62,11 @@ public class VehicleOutputFormatTest {
     public void testFormatPriceOrder() {
         String output = vehicleOutputFormat.formatPriceOrder(vehicles);
         Assert.assertEquals("1. Vehicle 1 - 100.00" + LINE_SEPARATOR +"2. Vehicle 2 - 600.00"+LINE_SEPARATOR,output);
-        System.out.println(output);
     }
 
     @Test
     public void testFormatVehicleSpecification() {
-        String output = vehicleOutputFormat.formatVehicleSpecification(this.vehicleSpecifications);
+        String output = vehicleOutputFormat.formatVehicleSpecification(vehicleSpecifications);
         Assert.assertEquals("1. Vehicle 1 - MBMN - Mini - 2 doors - Manual - Petrol - no AC" + LINE_SEPARATOR +
         "2. Vehicle 2 - MBMR - Mini - 2 doors - Manual - Petrol - AC" + LINE_SEPARATOR , output);
     }
