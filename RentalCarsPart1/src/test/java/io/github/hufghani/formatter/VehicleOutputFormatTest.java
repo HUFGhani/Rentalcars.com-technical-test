@@ -75,6 +75,6 @@ public class VehicleOutputFormatTest {
     public void testFormatsupplierRatingPerCarType(){
         String result = vehicleOutputFormat.formatSupplierRatingPerCarType(vehicleSpecifications);
         Assert.assertEquals("1. Vehicle 1 - Mini - Supplier 1 - 10.0" + LINE_SEPARATOR +
-                "2. Vehicle 3 - Mini - Supplier 4 - 10.0"+LINE_SEPARATOR, result);
+                "2. Vehicle 2 - Mini - Supplier 4 - 10.0"+LINE_SEPARATOR, result);
     }
 }
