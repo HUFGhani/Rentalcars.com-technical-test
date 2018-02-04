@@ -71,4 +71,22 @@ public class VehicleOutputFormat {
         return output;
 
     }
+
+    public String formatCalculateCombineScore(List<VehicleList> vehicles) {
+        String output = "";
+
+        if (index !=1){
+            index = 1;
+        }
+        for (int i = 0; i < vehicles.size(); i++) {
+            output+= String.format("%d. %s - %d - %.2f - %.2f%s",
+                    index++,
+                    vehicles.get(i).getName(),
+                    vehicles.get(i).getVehicleScore(),
+                    vehicles.get(i).getRating(),
+                    vehicles.get(i).getCombinedScore(),
+                    LINE_SEPARATOR);
+        }
+        return output;
+    }
 }
