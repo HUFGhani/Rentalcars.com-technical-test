@@ -37,7 +37,7 @@ public class VehicleOutputFormatTest {
         vehicle2.setPrice(600.0);
         vehicle2.setRating(10.0);
         vehicle2.setSipp("MBMR");
-        vehicle2.setSupplier("Supplier 1");
+        vehicle2.setSupplier("Supplier 4");
         vehicle2.setScore(11.0);
         VehicleSpecification vehicleSpecification2 = new VehicleSpecification();
         vehicleSpecification2.setAc("AC");
@@ -69,5 +69,12 @@ public class VehicleOutputFormatTest {
         String output = vehicleOutputFormat.formatVehicleSpecification(vehicleSpecifications);
         Assert.assertEquals("1. Vehicle 1 - MBMN - Mini - 2 doors - Manual - Petrol - no AC" + LINE_SEPARATOR +
         "2. Vehicle 2 - MBMR - Mini - 2 doors - Manual - Petrol - AC" + LINE_SEPARATOR , output);
+    }
+
+    @Test
+    public void testFormatsupplierRatingPerCarType(){
+        String result = vehicleOutputFormat.formatSupplierRatingPerCarType(vehicleSpecifications);
+        Assert.assertEquals("1. Vehicle 1 - Mini - Supplier 1 - 10.0" + LINE_SEPARATOR +
+                "2. Vehicle 3 - Mini - Supplier 4 - 10.0"+LINE_SEPARATOR, result);
     }
 }
