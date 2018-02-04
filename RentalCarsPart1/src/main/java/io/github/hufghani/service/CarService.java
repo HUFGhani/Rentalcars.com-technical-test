@@ -101,7 +101,7 @@ public class CarService implements CarServiceInterface {
 
         return Collections.unmodifiableList(
                 temp.stream()
-                .sorted((vehicleSpec1,vehicleSpec2) -> vehicleSpec1.getCarType().compareTo(vehicleSpec2.getCarType()))
+                .sorted((vehicleSpec1,vehicleSpec2) -> vehicleSpec2.getCarType().compareTo(vehicleSpec1.getCarType()))
                 .collect(Collectors.toList())
         );
     }
@@ -122,11 +122,12 @@ public class CarService implements CarServiceInterface {
                 vehicleScore += 2;
             }
 
-            vehicleLists.get(i).setScore(vehicleScore + vehicleLists.get(i).getRating());
+            vehicleLists.get(i).setVehicleScore(vehicleScore);
+            vehicleLists.get(i).setCombinedScore(vehicleScore + vehicleLists.get(i).getRating());
         }
         return Collections.unmodifiableList(
                 vehicleLists.stream()
-                        .sorted((vehicle1,vehicle2) -> Double.compare(vehicle1.getScore(),vehicle2.getScore()))
+                        .sorted((vehicle1,vehicle2) -> Double.compare(vehicle2.getCombinedScore(),vehicle1.getCombinedScore()))
                         .collect(Collectors.toList())
         );
     }

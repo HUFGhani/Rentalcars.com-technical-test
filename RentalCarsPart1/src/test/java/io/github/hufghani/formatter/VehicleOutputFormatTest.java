@@ -23,7 +23,8 @@ public class VehicleOutputFormatTest {
         vehicle1.setRating(10.0);
         vehicle1.setSipp("MBMN");
         vehicle1.setSupplier("Supplier 1");
-        vehicle1.setScore(11.0);
+        vehicle1.setCombinedScore(11.0);
+        vehicle1.setVehicleScore(1);
         VehicleSpecification vehicleSpecification1 = new VehicleSpecification();
         vehicleSpecification1.setAc("no AC");
         vehicleSpecification1.setVehicleList(vehicle1);
@@ -38,7 +39,8 @@ public class VehicleOutputFormatTest {
         vehicle2.setRating(10.0);
         vehicle2.setSipp("MBMR");
         vehicle2.setSupplier("Supplier 4");
-        vehicle2.setScore(11.0);
+        vehicle2.setCombinedScore(11.0);
+        vehicle2.setVehicleScore(1);
         VehicleSpecification vehicleSpecification2 = new VehicleSpecification();
         vehicleSpecification2.setAc("AC");
         vehicleSpecification2.setVehicleList(vehicle2);
@@ -76,5 +78,12 @@ public class VehicleOutputFormatTest {
         String result = vehicleOutputFormat.formatSupplierRatingPerCarType(vehicleSpecifications);
         Assert.assertEquals("1. Vehicle 1 - Mini - Supplier 1 - 10.0" + LINE_SEPARATOR +
                 "2. Vehicle 2 - Mini - Supplier 4 - 10.0"+LINE_SEPARATOR, result);
+    }
+
+    @Test
+    public void testFormatCalculateCombineScore() {
+        String result = vehicleOutputFormat.formatCalculateCombineScore(vehicles);
+        Assert.assertEquals("1. Vehicle 1 - 1 - 10,00 - 11,00" + LINE_SEPARATOR +
+                "2. Vehicle 2 - 1 - 10,00 - 11,00" + LINE_SEPARATOR, result);
     }
 }

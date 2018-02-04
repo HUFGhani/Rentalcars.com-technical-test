@@ -28,7 +28,8 @@ public class VehicleList implements Serializable
     private String supplier;
     @JsonProperty("rating")
     private Double rating;
-    private Double score;
+    private Integer vehicleScore;
+    private Double combinedScore;
     private final static long serialVersionUID = -4507223516141218126L;
 
     /**
@@ -105,12 +106,21 @@ public class VehicleList implements Serializable
         this.rating = rating;
     }
 
-    public Double getScore() {
-        return score;
+    public Integer getVehicleScore() {
+        return vehicleScore;
     }
 
-    public VehicleList setScore(Double score) {
-        this.score = score;
+    public VehicleList setVehicleScore(Integer vehiclescore) {
+        this.vehicleScore = vehiclescore;
+        return this;
+    }
+
+    public Double getCombinedScore() {
+        return combinedScore;
+    }
+
+    public VehicleList setCombinedScore(Double combinedScore) {
+        this.combinedScore = combinedScore;
         return this;
     }
 
@@ -122,7 +132,8 @@ public class VehicleList implements Serializable
                 ", price=" + price +
                 ", supplier='" + supplier + '\'' +
                 ", rating=" + rating +
-                ", score=" + score +
+                ", vehicleScore=" + vehicleScore +
+                ", combinedScore=" + combinedScore +
                 '}';
     }
 }
