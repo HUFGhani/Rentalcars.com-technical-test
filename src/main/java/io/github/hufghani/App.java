@@ -2,9 +2,14 @@ package io.github.hufghani;
 
 import io.github.hufghani.formatter.VehicleOutputFormat;
 import io.github.hufghani.service.VehicleService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import java.util.Scanner;
 
+@SpringBootApplication
+@EnableConfigurationProperties
 public class App {
 
     private static VehicleService vehicleService = new VehicleService();
@@ -29,7 +34,8 @@ public class App {
                 if (userInput.equals("1")) {
                     part1();
                 } else if (userInput.equals("2")) {
-
+                    part2(args);
+                    break;
                 } else if (userInput.equals("0")) {
                     System.out.println("Exiting Program");
                     System.exit(0);
@@ -41,6 +47,9 @@ public class App {
             }
         }
     }
+
+
+
     private static void part1() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("All vehicles in ascending price order:");
@@ -65,5 +74,9 @@ public class App {
         System.out.println("----------------------------------------------------------------------");
         System.out.println(vehicleOutputFormat.formatCalculateCombineScore(vehicleService.calculateCombineScore()));
         System.out.println("");
+    }
+
+    private static void part2(String[] args) {
+        SpringApplication.run(App.class,args);
     }
 }
