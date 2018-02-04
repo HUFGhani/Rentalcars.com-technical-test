@@ -192,4 +192,29 @@ public class CarServiceTest {
             }
         }
     }
+
+    @Test
+    public void testCalculateScore() {
+        List<VehicleList> vehicle = this.carService.CalculateScore();
+        Assert.assertNotNull(vehicle);
+        Assert.assertEquals(vehicleLists.size(),vehicle.size());
+
+        Double score = vehicle.get(0).getScore();
+        for(VehicleList v : vehicle){
+            Assert.assertNotNull(score);
+
+            if (v.getScore() > score){
+                Assert.assertTrue(false);
+            }
+
+            if(v.getName() == "Vehicle 1"){
+                Assert.assertEquals(java.util.Optional.ofNullable(Integer.valueOf(1)), v.getScore());
+            }
+
+            if(v.getName() == "Vehicle 2"){
+                Assert.assertEquals(java.util.Optional.ofNullable(Integer.valueOf(1)), v.getScore());
+            }
+        }
+
+    }
 }
