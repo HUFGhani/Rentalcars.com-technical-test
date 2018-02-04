@@ -64,4 +64,11 @@ public class VehicleOutputFormatTest {
         Assert.assertEquals("1. Vehicle 1 - 100.00" + LINE_SEPARATOR +"2. Vehicle 2 - 600.00"+LINE_SEPARATOR,output);
         System.out.println(output);
     }
+
+    @Test
+    public void testFormatVehicleSpecification() {
+        String output = vehicleOutputFormat.formatVehicleSpecification(this.vehicleSpecifications);
+        Assert.assertEquals("1. Vehicle 1 - MBMN - Mini - 2 doors - Manual - Petrol - no AC" + LINE_SEPARATOR +
+        "2. Vehicle 2 - MBMR - Mini - 2 doors - Manual - Petrol - AC" + LINE_SEPARATOR , output);
+    }
 }
