@@ -197,21 +197,23 @@ public class CarServiceTest {
         List<VehicleList> vehicles = this.carService.calculateCombineScore();
         Assert.assertNotNull(vehicles);
         Assert.assertEquals(vehicleLists.size(),vehicles.size());
-        Double score = vehicles.get(0).getScore();
+        Double combinedScore = vehicles.get(0).getCombinedScore();
         for (VehicleList vehicle : vehicles) {
-            Assert.assertNotNull(vehicle.getScore());
-            if (vehicle.getScore() > score) {
+            Assert.assertNotNull(vehicle.getVehicleScore());
+            if (vehicle.getVehicleScore() > combinedScore) {
                 Assert.assertTrue(false);
             } else {
-                score = vehicle.getPrice();
+                combinedScore = vehicle.getPrice();
             }
 
             if ("Car 1".equals(vehicle.getName())) {
-                Assert.assertEquals(Double.valueOf(11), vehicle.getScore());
+                Assert.assertEquals(Integer.valueOf(1), vehicle.getVehicleScore());
+                Assert.assertEquals(Integer.valueOf(11), vehicle.getCombinedScore());
             }
 
             if ("Car 2".equals(vehicle.getName())) {
-                Assert.assertEquals(Double.valueOf(16), vehicle.getScore());
+                Assert.assertEquals(Integer.valueOf(7),vehicle.getVehicleScore());
+                Assert.assertEquals(Integer.valueOf(16), vehicle.getCombinedScore());
             }
         }
 
