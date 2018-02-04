@@ -109,7 +109,6 @@ public class CarServiceTest {
         List <VehicleList> vehicle = carService.getAllVehicles();
         Assert.assertNotNull(vehicle);
         Assert.assertTrue(vehicle.size() == 10);
-        System.out.println(vehicle);
     }
 
 
@@ -185,8 +184,8 @@ public class CarServiceTest {
         for(VehicleSpecification vehicleSpecification: vehicleSpecifications){
             VehicleList vehicleList = vehicleSpecification.getVehicleList();
             if (vehicleList.equals("Vehicle 3")){
-                Assert.assertEquals(java.util.Optional.of(Double.valueOf(80.0)), vehicleList.getRating());
-                Assert.assertEquals(java.util.Optional.of(Double.valueOf(800.0)), vehicleList.getPrice());
+                Assert.assertEquals(Double.valueOf(80.0), vehicleList.getRating());
+                Assert.assertEquals(Double.valueOf(800.0), vehicleList.getPrice());
                 Assert.assertEquals("Suplier3", vehicleList.getSupplier());
                 break;
             }
@@ -194,25 +193,25 @@ public class CarServiceTest {
     }
 
     @Test
-    public void testCalculateScore() {
-        List<VehicleList> vehicle = this.carService.CalculateScore();
-        Assert.assertNotNull(vehicle);
-        Assert.assertEquals(vehicleLists.size(),vehicle.size());
-
-        Double score = vehicle.get(0).getScore();
-        for(VehicleList v : vehicle){
-            Assert.assertNotNull(score);
-
-            if (v.getScore() > score){
+    public void testCalculateCombineScore() {
+        List<VehicleList> vehicles = this.carService.calculateCombineScore();
+        Assert.assertNotNull(vehicles);
+        Assert.assertEquals(vehicleLists.size(),vehicles.size());
+        Double score = vehicles.get(0).getScore();
+        for (VehicleList vehicle : vehicles) {
+            Assert.assertNotNull(vehicle.getScore());
+            if (vehicle.getScore() > score) {
                 Assert.assertTrue(false);
+            } else {
+                score = vehicle.getPrice();
             }
 
-            if(v.getName() == "Vehicle 1"){
-                Assert.assertEquals(java.util.Optional.ofNullable(Integer.valueOf(1)), v.getScore());
+            if ("Car 1".equals(vehicle.getName())) {
+                Assert.assertEquals(Double.valueOf(11), vehicle.getScore());
             }
 
-            if(v.getName() == "Vehicle 2"){
-                Assert.assertEquals(java.util.Optional.ofNullable(Integer.valueOf(1)), v.getScore());
+            if ("Car 2".equals(vehicle.getName())) {
+                Assert.assertEquals(Double.valueOf(16), vehicle.getScore());
             }
         }
 
