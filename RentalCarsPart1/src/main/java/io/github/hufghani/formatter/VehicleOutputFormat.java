@@ -52,4 +52,23 @@ public class VehicleOutputFormat {
         }
         return output;
     }
+
+    public String formatSupplierRatingPerCarType(List<VehicleSpecification> vehicleSpecifications) {
+        String output = "";
+
+        if (index !=1){
+            index = 1;
+        }
+        for (int i = 0; i < vehicleSpecifications.size(); i++) {
+            output+= String.format("%d. %s - %s - %s - %s%s",
+                    index++,
+                    vehicleSpecifications.get(i).getVehicleList().getName(),
+                    vehicleSpecifications.get(i).getCarType(),
+                    vehicleSpecifications.get(i).getVehicleList().getSupplier(),
+                    vehicleSpecifications.get(i).getVehicleList().getRating(),
+                    LINE_SEPARATOR);
+        }
+        return output;
+
+    }
 }
