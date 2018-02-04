@@ -83,7 +83,7 @@ public class VehicleOutputFormatTest {
     @Test
     public void testFormatCalculateCombineScore() {
         String result = vehicleOutputFormat.formatCalculateCombineScore(vehicles);
-        Assert.assertEquals("1. Vehicle 1 - 1 - 10,00 - 11,00" + LINE_SEPARATOR +
-                "2. Vehicle 2 - 1 - 10,00 - 11,00" + LINE_SEPARATOR, result);
+        Assert.assertEquals("1. Vehicle 1 - 1 - 10.00 - 11.00" + LINE_SEPARATOR +
+                "2. Vehicle 2 - 1 - 10.00 - 11.00" + LINE_SEPARATOR, result);
     }
 }
