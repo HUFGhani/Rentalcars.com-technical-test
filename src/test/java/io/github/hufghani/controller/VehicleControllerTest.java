@@ -69,4 +69,15 @@ public class VehicleControllerTest {
         Assert.assertEquals(200, result.getStatusCodeValue());
         Assert.assertEquals("Test", result.getBody().getResult());
     }
+
+    @Test
+    public void testGetVehiclePriceOrder() {
+        Mockito.when(vehicleOutputFormat.formatPriceOrder(Mockito.anyList())).thenReturn("Test");
+
+        ResponseEntity<VehicleResponse> result = vehicleController.getVehiclePriceOrder();
+
+        Mockito.verify(vehicleService, Mockito.times(1)).vehiclePriceOrder();
+        Assert.assertEquals(200, result.getStatusCodeValue());
+        Assert.assertEquals("Test", result.getBody().getResult());
+    }
 }
