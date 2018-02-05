@@ -48,4 +48,11 @@ public class VehicleController {
         return ResponseEntity.ok(vehicleResponse);
     }
 
+    @RequestMapping(path = "/priceOrder", method = {RequestMethod.GET}, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<VehicleResponse> getVehiclePriceOrder() {
+        List<VehicleList> vehicle = vehicleService.vehiclePriceOrder();
+        VehicleResponse vehicleResponse = new VehicleResponse();
+        vehicleResponse.setResult(vehicleOutputFormat.formatPriceOrder(vehicle));
+        return ResponseEntity.ok(vehicleResponse);
+    }
 }
