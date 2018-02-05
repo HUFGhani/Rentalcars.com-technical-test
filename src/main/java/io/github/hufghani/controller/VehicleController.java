@@ -2,6 +2,7 @@ package io.github.hufghani.controller;
 
 import io.github.hufghani.formatter.VehicleOutputFormat;
 import io.github.hufghani.model.VehicleResponse;
+import io.github.hufghani.model.specification.VehicleSpecification;
 import io.github.hufghani.model.vehicle.VehicleList;
 import io.github.hufghani.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,20 @@ public class VehicleController {
     @Autowired
     private VehicleOutputFormat vehicleOutputFormat;
 
-    
-    @RequestMapping(path = "/score",
-            method = {RequestMethod.GET},
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
+    @RequestMapping(path = "/score", method = {RequestMethod.GET}, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<VehicleResponse> getScore() {
         List<VehicleList> vehicle = vehicleService.calculateCombineScore();
         VehicleResponse vehicleResponse = new VehicleResponse();
         vehicleResponse.setResult(vehicleOutputFormat.formatCalculateCombineScore(vehicle));
+        return ResponseEntity.ok(vehicleResponse);
+    }
+
+    @RequestMapping(path = "/supplierRatingPerCarType", method = {RequestMethod.GET}, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<VehicleResponse> getSupplierRatingPerCarType() {
+        List<VehicleSpecification> vehicleSpecification = vehicleService.supplierRatingPerCarType();
+        VehicleResponse vehicleResponse = new VehicleResponse();
+        vehicleResponse.setResult(vehicleOutputFormat.formatSupplierRatingPerCarType(vehicleSpecification));
         return ResponseEntity.ok(vehicleResponse);
     }
 
