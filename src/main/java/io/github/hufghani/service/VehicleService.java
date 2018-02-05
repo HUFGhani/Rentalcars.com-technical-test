@@ -7,6 +7,7 @@ import io.github.hufghani.model.specification.VehicleSIPPSpecification;
 import io.github.hufghani.model.specification.VehicleSpecification;
 import io.github.hufghani.model.vehicle.Rentalcars;
 import io.github.hufghani.model.vehicle.VehicleList;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class VehicleService implements VehicleServiceInterface {
 
     private Rentalcars rentalcars;

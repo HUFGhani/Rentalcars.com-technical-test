@@ -2,9 +2,10 @@ package io.github.hufghani.formatter;
 
 import io.github.hufghani.model.specification.VehicleSpecification;
 import io.github.hufghani.model.vehicle.VehicleList;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class VehicleOutputFormat {
 
     private int index;
