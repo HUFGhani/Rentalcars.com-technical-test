@@ -40,4 +40,12 @@ public class VehicleController {
         return ResponseEntity.ok(vehicleResponse);
     }
 
+    @RequestMapping(path = "/specificationBySipp", method = {RequestMethod.GET}, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<VehicleResponse> getVehicleSpecification() {
+        List<VehicleSpecification> vehicleSpecification = vehicleService.vehicleSpecification();
+        VehicleResponse vehicleResponse = new VehicleResponse();
+        vehicleResponse.setResult(vehicleOutputFormat.formatVehicleSpecification(vehicleSpecification));
+        return ResponseEntity.ok(vehicleResponse);
+    }
+
 }
