@@ -55,4 +55,13 @@ public class VehicleController {
         vehicleResponse.setResult(vehicleOutputFormat.formatPriceOrder(vehicle));
         return ResponseEntity.ok(vehicleResponse);
     }
+
+    @RequestMapping(path = "", method = {RequestMethod.GET}, produces = MediaType.TEXT_HTML_VALUE)
+    public String root() {
+        return "Available endpoints:<br/>" +
+                "/priceOrder <br/>" +
+                "/specificationBySipp <br/>" +
+                "/supplierRatingPerCarType <br/>" +
+                "/score</br>";
+    }
 }
