@@ -56,17 +56,13 @@ public class VehicleService implements VehicleServiceInterface {
     }
 
     public List<VehicleList> vehiclePriceOrder() {
-        Collections.sort(getAllVehicles(), new Comparator<VehicleList>() {
-            public int compare(VehicleList vehicle1, VehicleList vehicle) {
-                return Double.compare(vehicle1.getPrice(),vehicle.getPrice());
-            }
-        });
+        Collections.sort(getAllVehicles(), Comparator.comparingDouble(VehicleList::getPrice));
         return getAllVehicles();
     }
 
     public List<VehicleSpecification> vehicleSpecification() {
-        List<VehicleList> vehicleLists = this.getAllVehicles();
-        List<VehicleSpecification> temp = new ArrayList<VehicleSpecification>();
+        List<VehicleList> vehicleLists = getAllVehicles();
+        List<VehicleSpecification> temp = new ArrayList<>();
         vehicleLists.forEach(
                 vehicle->{
                     char[] sipp = vehicle.getSipp().toCharArray();
@@ -86,15 +82,15 @@ public class VehicleService implements VehicleServiceInterface {
 
     @Override
     public List<VehicleSpecification> supplierRatingPerCarType() {
-        List<VehicleList> vehicleLists = this.getAllVehicles();
+        List<VehicleList> vehicleLists = getAllVehicles();
         List<VehicleSpecification> vehicleSpecifications = vehicleSpecification();
-        List<VehicleSpecification> temp = new ArrayList<VehicleSpecification>(vehicleLists.size());
+        List<VehicleSpecification> temp = new ArrayList<>(vehicleLists.size());
         vehicleSpecifications.stream()
                 .collect(Collectors.groupingBy(VehicleSpecification::getCarType, Collectors.toList()))
                 .forEach(
                         (vehicleType,vehicleSpec) ->{
                             VehicleSpecification vehicleSpecification = vehicleSpec.stream()
-                                    .max((vehicleSpec1, vehicleSpec2) -> Double.compare(vehicleSpec1.getVehicleList().getRating(),vehicleSpec2.getVehicleList().getRating()))
+                                    .max(Comparator.comparingDouble(vehicleSpec1 -> vehicleSpec1.getVehicleList().getRating()))
                                     .get();
                             temp.add(vehicleSpecification);
                         }
@@ -109,7 +105,7 @@ public class VehicleService implements VehicleServiceInterface {
 
     @Override
     public List<VehicleList> calculateCombineScore() {
-        List<VehicleList> vehicleLists = this.getAllVehicles();
+        List<VehicleList> vehicleLists = getAllVehicles();
         for (int i = 0; i < vehicleLists.size(); i++) {
             int vehicleScore = 0;
             char[] vehicleSipp = vehicleLists.get(i).getSipp().toCharArray();
