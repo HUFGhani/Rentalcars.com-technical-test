@@ -19,3 +19,7 @@ Part 2 url is the following `localhost:8080` the end points are the following:
     * /specificationBySipp
     * /supplierRatingPerCarType
     * /score
+
+##Approach
+The approach to this project was to use TDD (Test Driven-Development) to get the best code coverage possible at the
+at the moment in time and reduce Technical debt where possiable.
