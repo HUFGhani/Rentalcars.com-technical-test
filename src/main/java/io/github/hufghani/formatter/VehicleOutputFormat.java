@@ -5,6 +5,8 @@ import io.github.hufghani.model.vehicle.VehicleList;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+//defines all vehicles output formation related methods.
 @Component
 public class VehicleOutputFormat {
 
@@ -15,6 +17,8 @@ public class VehicleOutputFormat {
         index = 0;
     }
 
+    //Formats the vehicles output in the list by the following format:
+    //{index}. {Vehicle name} – {Price}
     public String formatPriceOrder(List<VehicleList> vehicles) {
         StringBuilder output = new StringBuilder();
         indexReset();
@@ -29,6 +33,8 @@ public class VehicleOutputFormat {
         return output.toString();
     }
 
+    //Formats the vehicleSpecification output by the following format:
+    //{index}. {Vehicle name} – {SIPP} – {Car type} – {Car type/doors} – {Transmission} – {Fuel} – {Air con}
     public String formatVehicleSpecification(List<VehicleSpecification> vehicleSpecifications) {
         StringBuilder output = new StringBuilder();
         indexReset();
@@ -47,6 +53,8 @@ public class VehicleOutputFormat {
         return output.toString();
     }
 
+    //Formats the vehicleSpecification output by the following format:
+    //{index}. {Vehicle name} – {Car type} – {Supplier} – {Rating}
     public String formatSupplierRatingPerCarType(List<VehicleSpecification> vehicleSpecifications) {
         StringBuilder output = new StringBuilder();
         indexReset();
@@ -63,6 +71,8 @@ public class VehicleOutputFormat {
 
     }
 
+    //Formats the vehicles output by the following format:
+    //{index}. {Vehicle name} – {Vehicle score} – {Supplier rating} – {Sum of scores}
     public String formatCalculateCombineScore(List<VehicleList> vehicles) {
         StringBuilder output = new StringBuilder();
         indexReset();

@@ -2,6 +2,9 @@ package io.github.hufghani.model.specification;
 
 import io.github.hufghani.model.vehicle.VehicleList;
 
+
+// Stores specifications for a given vehicle.
+
 public class VehicleSpecification {
     private VehicleList vehicleList;
     private String carType;

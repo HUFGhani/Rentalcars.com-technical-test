@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+//Represents SIPP specification.
+
 public class VehicleSIPPSpecification implements Serializable {
 
     @JsonProperty("carType")

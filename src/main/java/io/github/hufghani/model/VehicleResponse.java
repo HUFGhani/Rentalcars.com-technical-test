@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
+// VehicleResponse is a warpper object to allow a valid JSON object.
 public class VehicleResponse implements Serializable {
 
     @JsonProperty("Result")

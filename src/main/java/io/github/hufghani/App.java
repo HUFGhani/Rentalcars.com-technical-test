@@ -49,7 +49,7 @@ public class App {
     }
 
 
-
+    //Runs and displays part 1 tasks
     private static void part1() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("All vehicles in ascending price order:");
@@ -76,6 +76,7 @@ public class App {
         System.out.println("");
     }
 
+    //Runs and displays part 2 task which is based on part 1
     private static void part2(String[] args) {
         SpringApplication.run(App.class,args);
     }
