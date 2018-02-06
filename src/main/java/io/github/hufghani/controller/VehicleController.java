@@ -57,11 +57,11 @@ public class VehicleController {
     }
 
     @RequestMapping(path = "", method = {RequestMethod.GET}, produces = MediaType.TEXT_HTML_VALUE)
-    public String root() {
-        return "Available endpoints:<br/>" +
+    public ResponseEntity<String> root() {
+        return ResponseEntity.ok("Available endpoints:<br/>" +
                 "/priceOrder <br/>" +
                 "/specificationBySipp <br/>" +
                 "/supplierRatingPerCarType <br/>" +
-                "/score</br>";
+                "/score</br>");
     }
 }

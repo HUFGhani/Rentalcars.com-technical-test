@@ -2,12 +2,14 @@ package io.github.hufghani.formatter;
 
 import io.github.hufghani.model.specification.VehicleSpecification;
 import io.github.hufghani.model.vehicle.VehicleList;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class VehicleOutputFormatTest {
     private final static String LINE_SEPARATOR = System.lineSeparator();
@@ -63,27 +65,75 @@ public class VehicleOutputFormatTest {
     @Test
     public void testFormatPriceOrder() {
         String output = vehicleOutputFormat.formatPriceOrder(vehicles);
-        Assert.assertEquals("1. Vehicle 1 - 100.00" + LINE_SEPARATOR +"2. Vehicle 2 - 600.00"+LINE_SEPARATOR,output);
+        assertEquals("1. Vehicle 1 - 100.00" + LINE_SEPARATOR +"2. Vehicle 2 - 600.00"+LINE_SEPARATOR,output);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testFormatPriceOrderNPE() {
+        String output = vehicleOutputFormat.formatPriceOrder(null);
+        assertEquals(null,output);
+    }
+
+    @Test
+    public void testFormatPriceOrderEmpty() {
+        String output = vehicleOutputFormat.formatPriceOrder(Collections.emptyList());
+        assertEquals("",output);
     }
 
     @Test
     public void testFormatVehicleSpecification() {
         String output = vehicleOutputFormat.formatVehicleSpecification(vehicleSpecifications);
-        Assert.assertEquals("1. Vehicle 1 - MBMN - Mini - 2 doors - Manual - Petrol - no AC" + LINE_SEPARATOR +
+        assertEquals("1. Vehicle 1 - MBMN - Mini - 2 doors - Manual - Petrol - no AC" + LINE_SEPARATOR +
         "2. Vehicle 2 - MBMR - Mini - 2 doors - Manual - Petrol - AC" + LINE_SEPARATOR , output);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testFormatVehicleSpecificationNPE() {
+        String output = vehicleOutputFormat.formatVehicleSpecification(null);
+        assertEquals(null, output);
+    }
+
+    @Test
+    public void testFormatVehicleSpecificationEmpty() {
+        String output = vehicleOutputFormat.formatVehicleSpecification(Collections.emptyList());
+        assertEquals("", output);
     }
 
     @Test
     public void testFormatsupplierRatingPerCarType(){
         String result = vehicleOutputFormat.formatSupplierRatingPerCarType(vehicleSpecifications);
-        Assert.assertEquals("1. Vehicle 1 - Mini - Supplier 1 - 10.0" + LINE_SEPARATOR +
+        assertEquals("1. Vehicle 1 - Mini - Supplier 1 - 10.0" + LINE_SEPARATOR +
                 "2. Vehicle 2 - Mini - Supplier 4 - 10.0"+LINE_SEPARATOR, result);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testFormatsupplierRatingPerCarTypeNPE(){
+        String result = vehicleOutputFormat.formatSupplierRatingPerCarType(null);
+        assertEquals(null, result);
+    }
+
+    @Test
+    public void testFormatsupplierRatingPerCarTypeEmpty(){
+        String result = vehicleOutputFormat.formatSupplierRatingPerCarType(Collections.emptyList());
+        assertEquals("", result);
     }
 
     @Test
     public void testFormatCalculateCombineScore() {
         String result = vehicleOutputFormat.formatCalculateCombineScore(vehicles);
-        Assert.assertEquals("1. Vehicle 1 - 1 - 10.00 - 11.00" + LINE_SEPARATOR +
+        assertEquals("1. Vehicle 1 - 1 - 10.00 - 11.00" + LINE_SEPARATOR +
                 "2. Vehicle 2 - 1 - 10.00 - 11.00" + LINE_SEPARATOR, result);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void testFormatCalculateCombineScoreNPE() {
+        String result = vehicleOutputFormat.formatCalculateCombineScore(null);
+        assertEquals(null, result);
+    }
+
+    @Test
+    public void testFormatCalculateCombineScoreEmpty() {
+        String result = vehicleOutputFormat.formatCalculateCombineScore(Collections.emptyList());
+        assertEquals("", result);
     }
 }

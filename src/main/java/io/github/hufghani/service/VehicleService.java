@@ -1,7 +1,5 @@
 package io.github.hufghani.service;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.hufghani.model.specification.VehicleSIPPSpecification;
 import io.github.hufghani.model.specification.VehicleSpecification;
@@ -19,7 +17,6 @@ import java.util.stream.Collectors;
 @Component
 public class VehicleService implements VehicleServiceInterface {
 
-    private Rentalcars rentalcars;
     private VehicleSIPPSpecification vehicleSIPPSpecification;
     private List<VehicleList> vehicleLists;
 
@@ -37,15 +34,11 @@ public class VehicleService implements VehicleServiceInterface {
                     .getResourceAsStream("sipp_spec.json");
 
 
-            this.rentalcars = objectMapper.readValue(vehicleResourceAsStream,Rentalcars.class);
-            this.vehicleLists = this.rentalcars.getSearch().getVehicleList();
+            Rentalcars rentalcars = objectMapper.readValue(vehicleResourceAsStream, Rentalcars.class);
+            this.vehicleLists = rentalcars.getSearch().getVehicleList();
             this.vehicleSIPPSpecification = objectMapper.
                     readValue(vehicleSpecificationResourceAsStream,VehicleSIPPSpecification.class);
 
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +49,7 @@ public class VehicleService implements VehicleServiceInterface {
     }
 
     public List<VehicleList> vehiclePriceOrder() {
-        Collections.sort(getAllVehicles(), Comparator.comparingDouble(VehicleList::getPrice));
+        getAllVehicles().sort(Comparator.comparingDouble(VehicleList::getPrice));
         return getAllVehicles();
     }
 
@@ -106,10 +99,10 @@ public class VehicleService implements VehicleServiceInterface {
     @Override
     public List<VehicleList> calculateCombineScore() {
         List<VehicleList> vehicleLists = getAllVehicles();
-        for (int i = 0; i < vehicleLists.size(); i++) {
+        for (VehicleList vehicleList : vehicleLists) {
             int vehicleScore = 0;
-            char[] vehicleSipp = vehicleLists.get(i).getSipp().toCharArray();
-            if(vehicleSipp[2] == 'M'){
+            char[] vehicleSipp = vehicleList.getSipp().toCharArray();
+            if (vehicleSipp[2] == 'M') {
                 vehicleScore += 1;
             } else if (vehicleSipp[2] == 'A') {
                 vehicleScore += 5;
@@ -119,8 +112,8 @@ public class VehicleService implements VehicleServiceInterface {
                 vehicleScore += 2;
             }
 
-            vehicleLists.get(i).setVehicleScore(vehicleScore);
-            vehicleLists.get(i).setCombinedScore(vehicleScore + vehicleLists.get(i).getRating());
+            vehicleList.setVehicleScore(vehicleScore);
+            vehicleList.setCombinedScore(vehicleScore + vehicleList.getRating());
         }
         return Collections.unmodifiableList(
                 vehicleLists.stream()

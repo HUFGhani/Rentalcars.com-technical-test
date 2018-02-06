@@ -9,14 +9,13 @@ import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "sipp",
-    "name",
-    "price",
-    "supplier",
-    "rating"
+        "sipp",
+        "name",
+        "price",
+        "supplier",
+        "rating"
 })
-public class VehicleList implements Serializable
-{
+public class VehicleList implements Serializable {
 
     @JsonProperty("sipp")
     private String sipp;
@@ -34,13 +33,11 @@ public class VehicleList implements Serializable
 
     /**
      * No args constructor for use in serialization
-     * 
      */
     public VehicleList() {
     }
 
     /**
-     * 
      * @param price
      * @param name
      * @param rating
@@ -126,14 +123,15 @@ public class VehicleList implements Serializable
 
     @Override
     public String toString() {
-        return "VehicleList{" +
-                "sipp='" + sipp + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", supplier='" + supplier + '\'' +
-                ", rating=" + rating +
-                ", vehicleScore=" + vehicleScore +
-                ", combinedScore=" + combinedScore +
-                '}';
+        return new StringBuilder()
+                .append("VehicleList{")
+                .append("sipp='").append(sipp).append('\'')
+                .append(", name='").append(name).append('\'')
+                .append(", price=").append(price)
+                .append(", supplier='").append(supplier).append('\'')
+                .append(", rating=").append(rating)
+                .append(", vehicleScore=").append(vehicleScore)
+                .append(", combinedScore=").append(combinedScore)
+                .append('}').toString();
     }
 }

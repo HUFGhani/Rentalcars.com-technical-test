@@ -28,8 +28,9 @@ public class VehicleResponse implements Serializable {
 
     @Override
     public String toString() {
-        return "VehicleResponse{" +
-                "result=" + result +
-                '}';
+        return new StringBuilder()
+                .append("VehicleResponse{")
+                .append("result=").append(result)
+                .append('}').toString();
     }
 }

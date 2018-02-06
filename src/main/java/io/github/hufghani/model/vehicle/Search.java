@@ -17,7 +17,7 @@ public class Search implements Serializable
 {
 
     @JsonProperty("VehicleList")
-    private List<VehicleList> vehicleList = new ArrayList<VehicleList>();
+    private List<VehicleList> vehicleList = new ArrayList<>();
     private final static long serialVersionUID = -7209920633061246705L;
 
     /**
@@ -48,8 +48,9 @@ public class Search implements Serializable
 
     @Override
     public String toString() {
-        return "Search{" +
-                "vehicleList=" + vehicleList +
-                '}';
+        return new StringBuilder()
+                .append("Search{")
+                .append("vehicleList=").append(vehicleList)
+                .append('}').toString();
     }
 }

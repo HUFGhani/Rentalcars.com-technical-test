@@ -19,6 +19,7 @@ public class VehicleSIPPSpecification implements Serializable {
     private final Map<Character, String> fuelAcMap;
 
     public VehicleSIPPSpecification() {
+        super();
         this.carTypeMap = new HashMap<>();
         this.doorsMap = new HashMap<>();
         this.transmissionMap = new HashMap<>();
@@ -26,6 +27,7 @@ public class VehicleSIPPSpecification implements Serializable {
     }
 
     public VehicleSIPPSpecification(Map<Character, String> carTypeMap, Map<Character, String> doorsMap, Map<Character, String> transmissionMap, Map<Character, String> fuelAcMap) {
+        super();
         this.carTypeMap = carTypeMap;
         this.doorsMap = doorsMap;
         this.transmissionMap = transmissionMap;
@@ -50,11 +52,12 @@ public class VehicleSIPPSpecification implements Serializable {
 
     @Override
     public String toString() {
-        return "VehicleSIPPSpecification{" +
-                "carTypeMap=" + carTypeMap +
-                ", doorsMap=" + doorsMap +
-                ", transmissionMap=" + transmissionMap +
-                ", fuelAcMap=" + fuelAcMap +
-                '}';
+        return new StringBuilder()
+                .append("VehicleSIPPSpecification{")
+                .append("carTypeMap=").append(carTypeMap)
+                .append(", doorsMap=").append(doorsMap)
+                .append(", transmissionMap=").append(transmissionMap)
+                .append(", fuelAcMap=").append(fuelAcMap)
+                .append('}').toString();
     }
 }

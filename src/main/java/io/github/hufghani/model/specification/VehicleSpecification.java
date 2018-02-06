@@ -14,6 +14,7 @@ public class VehicleSpecification {
     }
 
     public VehicleSpecification(VehicleList vehicleList, String carType, String doors, String transmission, String fuel, String ac) {
+        super();
         this.vehicleList = vehicleList;
         this.carType = carType;
         this.doors = doors;
@@ -78,13 +79,14 @@ public class VehicleSpecification {
 
     @Override
     public String toString() {
-        return "VehicleSpecification{" +
-                "vehicleList=" + vehicleList +
-                ", carType='" + carType + '\'' +
-                ", doors='" + doors + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", fuel='" + fuel + '\'' +
-                ", ac='" + ac + '\'' +
-                '}';
+        return new StringBuilder()
+                .append("VehicleSpecification{")
+                .append("vehicleList=").append(vehicleList)
+                .append(", carType='").append(carType).append('\'')
+                .append(", doors='").append(doors).append('\'')
+                .append(", transmission='").append(transmission).append('\'')
+                .append(", fuel='").append(fuel).append('\'')
+                .append(", ac='").append(ac).append('\'')
+                .append('}').toString();
     }
 }

@@ -46,8 +46,9 @@ public class Rentalcars implements Serializable
 
     @Override
     public String toString() {
-        return "Rentalcars{" +
-                "search=" + search +
-                '}';
+        return new StringBuilder()
+                .append("Rentalcars{")
+                .append("search=").append(search)
+                .append('}').toString();
     }
 }

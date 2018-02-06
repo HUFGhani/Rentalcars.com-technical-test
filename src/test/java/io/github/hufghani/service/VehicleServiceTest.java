@@ -2,12 +2,13 @@ package io.github.hufghani.service;
 
 import io.github.hufghani.model.specification.VehicleSpecification;
 import io.github.hufghani.model.vehicle.VehicleList;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class VehicleServiceTest {
 
@@ -98,7 +99,7 @@ public class VehicleServiceTest {
         vehicleLists.add(vehicle9);
         vehicleLists.add(vehicle10);
 
-        this.vehicleService = new VehicleService() {
+        vehicleService = new VehicleService() {
             public List<VehicleList> getAllVehicles() {
                 return vehicleLists;
             }
@@ -107,20 +108,20 @@ public class VehicleServiceTest {
     @Test
     public void testGetAllVehicles() {
         List <VehicleList> vehicle = vehicleService.getAllVehicles();
-        Assert.assertNotNull(vehicle);
-        Assert.assertTrue(vehicle.size() == 10);
+        assertNotNull(vehicle);
+        assertTrue(vehicle.size() == 10);
     }
 
 
     @Test
     public void testVehiclePriceOrder() {
         List <VehicleList> vehicle = vehicleService.vehiclePriceOrder();
-        Assert.assertNotNull(vehicle);
-        Assert.assertEquals(this.vehicleLists.size(), vehicle.size());
+        assertNotNull(vehicle);
+        assertEquals(this.vehicleLists.size(), vehicle.size());
         Double price = vehicle.get(0).getPrice();
         for (VehicleList v : vehicle) {
             if (v.getPrice() < price) {
-                Assert.assertTrue(false);
+                assertTrue(false);
             } else {
                 price = v.getPrice();
             }
@@ -131,62 +132,62 @@ public class VehicleServiceTest {
     @Test
     public void testVehicleSpecification() {
         List<VehicleSpecification> vehicleSpecifications = this.vehicleService.vehicleSpecification();
-        Assert.assertNotNull(vehicleSpecifications);
-        Assert.assertEquals(this.vehicleLists.size(), vehicleSpecifications.size());
+        assertNotNull(vehicleSpecifications);
+        assertEquals(this.vehicleLists.size(), vehicleSpecifications.size());
         VehicleSpecification vehicleSpecification = vehicleSpecifications.get(0);
-        Assert.assertEquals("Mini", vehicleSpecification.getCarType());
-        Assert.assertEquals("2 doors", vehicleSpecification.getDoors());
-        Assert.assertEquals("Manual", vehicleSpecification.getTransmission());
-        Assert.assertEquals("Petrol", vehicleSpecification.getFuel());
-        Assert.assertEquals("no AC", vehicleSpecification.getAc());
+        assertEquals("Mini", vehicleSpecification.getCarType());
+        assertEquals("2 doors", vehicleSpecification.getDoors());
+        assertEquals("Manual", vehicleSpecification.getTransmission());
+        assertEquals("Petrol", vehicleSpecification.getFuel());
+        assertEquals("no AC", vehicleSpecification.getAc());
 
         vehicleSpecification = vehicleSpecifications.get(1);
-        Assert.assertEquals("Economy", vehicleSpecification.getCarType());
-        Assert.assertEquals("4 doors", vehicleSpecification.getDoors());
-        Assert.assertEquals("Automatic", vehicleSpecification.getTransmission());
-        Assert.assertEquals("Petrol", vehicleSpecification.getFuel());
-        Assert.assertEquals("AC", vehicleSpecification.getAc());
+        assertEquals("Economy", vehicleSpecification.getCarType());
+        assertEquals("4 doors", vehicleSpecification.getDoors());
+        assertEquals("Automatic", vehicleSpecification.getTransmission());
+        assertEquals("Petrol", vehicleSpecification.getFuel());
+        assertEquals("AC", vehicleSpecification.getAc());
 
         vehicleSpecification = vehicleSpecifications.get(2);
-        Assert.assertEquals("Compact", vehicleSpecification.getCarType());
-        Assert.assertEquals("5 doors", vehicleSpecification.getDoors());
+        assertEquals("Compact", vehicleSpecification.getCarType());
+        assertEquals("5 doors", vehicleSpecification.getDoors());
 
         vehicleSpecification = vehicleSpecifications.get(3);
-        Assert.assertEquals("Intermediate", vehicleSpecification.getCarType());
-        Assert.assertEquals("Estate", vehicleSpecification.getDoors());
+        assertEquals("Intermediate", vehicleSpecification.getCarType());
+        assertEquals("Estate", vehicleSpecification.getDoors());
 
         vehicleSpecification = vehicleSpecifications.get(4);
-        Assert.assertEquals("Standard", vehicleSpecification.getCarType());
-        Assert.assertEquals("Convertible", vehicleSpecification.getDoors());
+        assertEquals("Standard", vehicleSpecification.getCarType());
+        assertEquals("Convertible", vehicleSpecification.getDoors());
 
         vehicleSpecification = vehicleSpecifications.get(5);
-        Assert.assertEquals("Full size", vehicleSpecification.getCarType());
-        Assert.assertEquals("SUV", vehicleSpecification.getDoors());
+        assertEquals("Full size", vehicleSpecification.getCarType());
+        assertEquals("SUV", vehicleSpecification.getDoors());
 
         vehicleSpecification = vehicleSpecifications.get(6);
-        Assert.assertEquals("Premium", vehicleSpecification.getCarType());
-        Assert.assertEquals("Pick up", vehicleSpecification.getDoors());
+        assertEquals("Premium", vehicleSpecification.getCarType());
+        assertEquals("Pick up", vehicleSpecification.getDoors());
 
         vehicleSpecification = vehicleSpecifications.get(7);
-        Assert.assertEquals("Luxury", vehicleSpecification.getCarType());
-        Assert.assertEquals("Passenger Van", vehicleSpecification.getDoors());
+        assertEquals("Luxury", vehicleSpecification.getCarType());
+        assertEquals("Passenger Van", vehicleSpecification.getDoors());
 
         vehicleSpecification = vehicleSpecifications.get(8);
-        Assert.assertEquals("Special", vehicleSpecification.getCarType());
+        assertEquals("Special", vehicleSpecification.getCarType());
 
     }
 
     @Test
     public void testSupplierRatingPerCarType() {
         List<VehicleSpecification> vehicleSpecifications = this.vehicleService.supplierRatingPerCarType();
-        Assert.assertNotNull(vehicleSpecifications);
-        Assert.assertEquals(this.vehicleLists.size() -1, vehicleSpecifications.size());
+        assertNotNull(vehicleSpecifications);
+        assertEquals(this.vehicleLists.size() -1, vehicleSpecifications.size());
         for(VehicleSpecification vehicleSpecification: vehicleSpecifications){
             VehicleList vehicleList = vehicleSpecification.getVehicleList();
             if (vehicleList.getName().equals("Vehicle 3")){
-                Assert.assertEquals(Double.valueOf(80.0), vehicleList.getRating());
-                Assert.assertEquals(Double.valueOf(800.0), vehicleList.getPrice());
-                Assert.assertEquals("Supplier 3", vehicleList.getSupplier());
+                assertEquals(Double.valueOf(80.0), vehicleList.getRating());
+                assertEquals(Double.valueOf(800.0), vehicleList.getPrice());
+                assertEquals("Supplier 3", vehicleList.getSupplier());
                 break;
             }
         }
@@ -195,25 +196,25 @@ public class VehicleServiceTest {
     @Test
     public void testCalculateCombineScore() {
         List<VehicleList> vehicles = this.vehicleService.calculateCombineScore();
-        Assert.assertNotNull(vehicles);
-        Assert.assertEquals(vehicleLists.size(),vehicles.size());
+        assertNotNull(vehicles);
+        assertEquals(vehicleLists.size(),vehicles.size());
         Double combinedScore = vehicles.get(0).getCombinedScore();
         for (VehicleList vehicle : vehicles) {
-            Assert.assertNotNull(vehicle.getVehicleScore());
+            assertNotNull(vehicle.getVehicleScore());
             if (vehicle.getVehicleScore() > combinedScore) {
-                Assert.assertTrue(false);
+                assertTrue(false);
             } else {
                 combinedScore = vehicle.getPrice();
             }
 
             if ("Car 1".equals(vehicle.getName())) {
-                Assert.assertEquals(Integer.valueOf(1), vehicle.getVehicleScore());
-                Assert.assertEquals(Integer.valueOf(11), vehicle.getCombinedScore());
+                assertEquals(Integer.valueOf(1), vehicle.getVehicleScore());
+                assertEquals(Integer.valueOf(11), vehicle.getCombinedScore());
             }
 
             if ("Car 2".equals(vehicle.getName())) {
-                Assert.assertEquals(Integer.valueOf(7),vehicle.getVehicleScore());
-                Assert.assertEquals(Integer.valueOf(16), vehicle.getCombinedScore());
+                assertEquals(Integer.valueOf(7),vehicle.getVehicleScore());
+                assertEquals(Integer.valueOf(16), vehicle.getCombinedScore());
             }
         }
 

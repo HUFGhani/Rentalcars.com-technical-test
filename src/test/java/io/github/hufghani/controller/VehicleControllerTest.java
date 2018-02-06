@@ -3,7 +3,6 @@ package io.github.hufghani.controller;
 import io.github.hufghani.formatter.VehicleOutputFormat;
 import io.github.hufghani.model.VehicleResponse;
 import io.github.hufghani.service.VehicleService;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +11,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.util.ReflectionTestUtils;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class VehicleControllerTest {
@@ -44,8 +45,8 @@ public class VehicleControllerTest {
         ResponseEntity<VehicleResponse> result = vehicleController.getScore();
 
         Mockito.verify(vehicleService, Mockito.times(1)).calculateCombineScore();
-        Assert.assertEquals(200, result.getStatusCodeValue());
-        Assert.assertEquals("Test", result.getBody().getResult());
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals("Test", result.getBody().getResult());
     }
 
     @Test
@@ -55,8 +56,8 @@ public class VehicleControllerTest {
         ResponseEntity<VehicleResponse> result = vehicleController.getSupplierRatingPerCarType();
 
         Mockito.verify(vehicleService, Mockito.times(1)).supplierRatingPerCarType();
-        Assert.assertEquals(200, result.getStatusCodeValue());
-        Assert.assertEquals("Test", result.getBody().getResult());
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals("Test", result.getBody().getResult());
     }
 
     @Test
@@ -66,8 +67,8 @@ public class VehicleControllerTest {
         ResponseEntity<VehicleResponse> result = vehicleController.getVehicleSpecification();
 
         Mockito.verify(vehicleService, Mockito.times(1)).vehicleSpecification();
-        Assert.assertEquals(200, result.getStatusCodeValue());
-        Assert.assertEquals("Test", result.getBody().getResult());
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals("Test", result.getBody().getResult());
     }
 
     @Test
@@ -77,7 +78,15 @@ public class VehicleControllerTest {
         ResponseEntity<VehicleResponse> result = vehicleController.getVehiclePriceOrder();
 
         Mockito.verify(vehicleService, Mockito.times(1)).vehiclePriceOrder();
-        Assert.assertEquals(200, result.getStatusCodeValue());
-        Assert.assertEquals("Test", result.getBody().getResult());
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals("Test", result.getBody().getResult());
+    }
+
+    @Test
+    public void testRoot(){
+        ResponseEntity<String> result = vehicleController.root();
+        assertEquals(200, result.getStatusCodeValue());
+        assertEquals("Available endpoints:<br/>/priceOrder <br/>/specificationBySipp <br/>/supplierRatingPerCarType <br/>/score</br>", result.getBody().toString());
+
     }
 }

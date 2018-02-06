@@ -16,78 +16,69 @@ public class VehicleOutputFormat {
     }
 
     public String formatPriceOrder(List<VehicleList> vehicles) {
-        String output = "";
-
-        if (index !=1){
-            index = 1;
-        }
-
-        for (int i = 0; i <vehicles.size(); i++) {
-            output+= String.format("%d. %s - %.2f%s",
+        StringBuilder output = new StringBuilder();
+        indexReset();
+        for (VehicleList vehicle : vehicles) {
+            output.append(String.format("%d. %s - %.2f%s",
                     index++,
-                    vehicles.get(i).getName(),
-                    vehicles.get(i).getPrice(),
-                    LINE_SEPARATOR);
+                    vehicle.getName(),
+                    vehicle.getPrice(),
+                    LINE_SEPARATOR));
         }
 
-        return output;
+        return output.toString();
     }
 
     public String formatVehicleSpecification(List<VehicleSpecification> vehicleSpecifications) {
-        String output = "";
-
-        if (index !=1){
-            index = 1;
-        }
-        for (int i = 0; i <vehicleSpecifications.size(); i++) {
-            output+= String.format("%d. %s - %s - %s - %s - %s - %s - %s%s",
+        StringBuilder output = new StringBuilder();
+        indexReset();
+        for (VehicleSpecification vehicleSpecification : vehicleSpecifications) {
+            output.append(String.format("%d. %s - %s - %s - %s - %s - %s - %s%s",
                     index++,
-                    vehicleSpecifications.get(i).getVehicleList().getName(),
-                    vehicleSpecifications.get(i).getVehicleList().getSipp(),
-                    vehicleSpecifications.get(i).getCarType(),
-                    vehicleSpecifications.get(i).getDoors(),
-                    vehicleSpecifications.get(i).getTransmission(),
-                    vehicleSpecifications.get(i).getFuel(),
-                    vehicleSpecifications.get(i).getAc(),
-                    LINE_SEPARATOR);
+                    vehicleSpecification.getVehicleList().getName(),
+                    vehicleSpecification.getVehicleList().getSipp(),
+                    vehicleSpecification.getCarType(),
+                    vehicleSpecification.getDoors(),
+                    vehicleSpecification.getTransmission(),
+                    vehicleSpecification.getFuel(),
+                    vehicleSpecification.getAc(),
+                    LINE_SEPARATOR));
         }
-        return output;
+        return output.toString();
     }
 
     public String formatSupplierRatingPerCarType(List<VehicleSpecification> vehicleSpecifications) {
-        String output = "";
-
-        if (index !=1){
-            index = 1;
-        }
-        for (int i = 0; i < vehicleSpecifications.size(); i++) {
-            output+= String.format("%d. %s - %s - %s - %s%s",
+        StringBuilder output = new StringBuilder();
+        indexReset();
+        for (VehicleSpecification vehicleSpecification : vehicleSpecifications) {
+            output.append(String.format("%d. %s - %s - %s - %s%s",
                     index++,
-                    vehicleSpecifications.get(i).getVehicleList().getName(),
-                    vehicleSpecifications.get(i).getCarType(),
-                    vehicleSpecifications.get(i).getVehicleList().getSupplier(),
-                    vehicleSpecifications.get(i).getVehicleList().getRating(),
-                    LINE_SEPARATOR);
+                    vehicleSpecification.getVehicleList().getName(),
+                    vehicleSpecification.getCarType(),
+                    vehicleSpecification.getVehicleList().getSupplier(),
+                    vehicleSpecification.getVehicleList().getRating(),
+                    LINE_SEPARATOR));
         }
-        return output;
+        return output.toString();
 
     }
 
     public String formatCalculateCombineScore(List<VehicleList> vehicles) {
-        String output = "";
-
-        if (index !=1){
-            index = 1;
-        }
-        for (int i = 0; i < vehicles.size(); i++) {
-            output+= String.format("%d. %s - %d - %.2f - %.2f%s",
+        StringBuilder output = new StringBuilder();
+        indexReset();
+        for (VehicleList vehicle : vehicles) {
+            output.append(String.format("%d. %s - %d - %.2f - %.2f%s",
                     index++,
-                    vehicles.get(i).getName(),
-                    vehicles.get(i).getVehicleScore(),
-                    vehicles.get(i).getRating(),
-                    vehicles.get(i).getCombinedScore(),
-                    LINE_SEPARATOR);
+                    vehicle.getName(),
+                    vehicle.getVehicleScore(),
+                    vehicle.getRating(),
+                    vehicle.getCombinedScore(),
+                    LINE_SEPARATOR));
         }
-        return output;
+        return output.toString();
+    }
+
+    private void indexReset(){
+         index = 1;
     }
 }
