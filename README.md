@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/HUFGhani/Rentalcars.com-technical-test.svg?branch=master)](https://travis-ci.org/HUFGhani/Rentalcars.com-technical-test)
+[![codecov](https://codecov.io/gh/HUFGhani/Rentalcars.com-technical-test/branch/master/graph/badge.svg)](https://codecov.io/gh/HUFGhani/Rentalcars.com-technical-test)
 # Rentalcars.com-technical-test
 
 ## Prerequisites
