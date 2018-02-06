@@ -1,6 +1,6 @@
 # Rentalcars.com-technical-test
 
-##Prerequisites
+## Prerequisites
 * Java 8 or higher
 * Maven 3.5.2 or higher
 * Terminal or Command Prompt/ PowerShell
@@ -12,7 +12,7 @@
 Part 2 url is the following `localhost:8080` the end points are the following:
 
 * /
-*/vehicles
+* /vehicles
     * /priceOrder
     * /specificationBySipp
     * /supplierRatingPerCarType
