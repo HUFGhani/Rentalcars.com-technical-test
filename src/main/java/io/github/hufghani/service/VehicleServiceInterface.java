@@ -9,17 +9,17 @@ import java.util.List;
 public interface VehicleServiceInterface {
 
     // gets all the vehicles.
-    public List<VehicleList>getAllVehicles();
+    List<VehicleList>getAllVehicles();
 
     //gets all the vehicles, orders them in price order ascending.
-    public List<VehicleList>vehiclePriceOrder();
+    List<VehicleList>vehiclePriceOrder();
 
     //gets all the vehicles specifications based on their SIPP.
-    public List<VehicleSpecification> vehicleSpecification();
+    List<VehicleSpecification> vehicleSpecification();
 
     //gets all the vehicles, groups them by their type, selects the highest supplier' ratings for each every type.
-    public List<VehicleSpecification> supplierRatingPerCarType();
+    List<VehicleSpecification> supplierRatingPerCarType();
 
     //gets all the vehicles, calculates their scores, orders them by their combined score Highest to lowest.
-    public List<VehicleList> calculateCombineScore();
+    List<VehicleList> calculateCombineScore();
 }
